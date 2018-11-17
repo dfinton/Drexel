@@ -1,0 +1,19 @@
+{
+  "name": "drexel-frontend",
+  "version": "0.0.0",
+  "description": "Drexel Frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfinton/drexel-frontend.git"
+  },
+  "author": "David Finton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dfinton/drexel-frontend/issues"
+  },
+  "homepage": "https://github.com/dfinton/drexel-frontend#readme"
+}
