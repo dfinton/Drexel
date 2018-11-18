@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "www": "node www/index.js",
-    "www-dev": "nodemon www/index.js"
+    "www-dev": "nodemon www/index.js",
+    "client-build": "babel client/index.js --out-file public/js/app.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,9 @@
     "mongoose": "^5.3.12"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
     "nodemon": "^1.18.6"
   },
   "engines": {
