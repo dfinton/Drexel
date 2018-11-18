@@ -1,19 +1,31 @@
 {
-  "name": "drexel-frontend",
+  "name": "drexel",
   "version": "0.0.0",
-  "description": "Drexel Frontend",
+  "description": "Drexel",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "www": "node www/index.js",
+    "www-dev": "nodemon www/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dfinton/drexel-frontend.git"
+    "url": "git+https://github.com/dfinton/drexel.git"
   },
   "author": "David Finton",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dfinton/drexel-frontend/issues"
+    "url": "https://github.com/dfinton/drexel/issues"
   },
-  "homepage": "https://github.com/dfinton/drexel-frontend#readme"
+  "homepage": "https://github.com/dfinton/drexel#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.3.12"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  },
+  "engines": {
+    "node": ">=10.13.0 <11",
+    "npm": ">=6.4.1 <7"
+  }
 }
