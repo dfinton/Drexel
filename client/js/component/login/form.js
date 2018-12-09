@@ -1,14 +1,19 @@
+import axios from 'axios';
+
 class LoginForm extends HTMLElement {
   constructor() {
     super();
 
-    this.attachShadow({
-      mode: 'open',
-    });
-
-    this.shadowRoot.innerHTML = `
-      <h1>Woooooo!</h1>
-    `;
+    axios({
+      method: 'get',
+      url: '/template/login/form.html',
+    })
+      .then((response) => {
+        this.innerHTML = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
 
