@@ -64,4 +64,4 @@ typings/
 .session
 
 # Drexel build folders
-public/js
+dist/*

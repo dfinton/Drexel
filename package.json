@@ -6,8 +6,8 @@
   "scripts": {
     "www": "node www/index.js",
     "www-dev": "nodemon www/index.js",
-    "app-build": "browserify client/js/util/component-loader.js -o public/js/app.js -t babelify --presets @babel/preset-env",
-    "component-build": "browserify client/js/component/index.js -o public/js/component.js -t babelify --presets @babel/preset-env"
+    "app-build": "browserify client/js/util/component-loader.js -o dist/js/app.js -t babelify --presets @babel/preset-env",
+    "component-build": "browserify client/js/component/index.js -o dist/js/component.js -t babelify --presets @babel/preset-env"
   },
   "repository": {
     "type": "git",

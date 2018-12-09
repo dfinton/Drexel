@@ -1,3 +1,3 @@
-import MyTitle from './my-title';
+import LoginForm from './login/form';
 
-window.customElements.define('my-title', MyTitle);
+window.customElements.define(LoginForm.element, LoginForm.component);
