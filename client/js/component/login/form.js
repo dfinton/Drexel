@@ -7,8 +7,14 @@ class LoginForm extends DrexelElement {
 
   initElement() {
     const $this = this.$this;
+    const $button = $this.children();
 
-    console.log($this);
+    console.log($button);
+
+    $button.click((event) => {
+      console.log('Form submitted');
+      event.preventDefault();
+    });
   }
 }
 
