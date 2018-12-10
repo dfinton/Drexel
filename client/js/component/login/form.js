@@ -1,12 +1,14 @@
-import template from '../../util/template';
+import DrexelElement from '../../util/drexel-element';
 
-class LoginForm extends HTMLElement {
+class LoginForm extends DrexelElement {
   constructor() {
-    super();
+    super('login/form');
+  }
 
-    template('login/form', (templateHtml) => {
-      this.innerHTML = templateHtml;
-    });
+  initElement() {
+    const $this = this.$this;
+
+    console.log($this);
   }
 }
 
