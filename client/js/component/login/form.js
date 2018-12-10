@@ -1,19 +1,12 @@
-import axios from 'axios';
+import template from '../../util/template';
 
 class LoginForm extends HTMLElement {
   constructor() {
     super();
 
-    axios({
-      method: 'get',
-      url: '/template/login/form.html',
-    })
-      .then((response) => {
-        this.innerHTML = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    template('login/form', (templateHtml) => {
+      this.innerHTML = templateHtml;
+    });
   }
 }
 
