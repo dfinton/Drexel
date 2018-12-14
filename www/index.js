@@ -27,9 +27,6 @@ app.use('/js/webcomponentsjs', express.static('node_modules/@webcomponents/webco
 app.use('/js', express.static('dist/js'));
 app.use('/css', express.static('dist/css'));
 
-// HTML web component fragments are loaded from here
-app.use('/template', express.static('template'));
-
 // Layout where the root HTML document is located
 app.use('/', express.static('layout'));
 
