@@ -13,7 +13,8 @@ app.use('/auth', require('./auth'));
 // JQuery JS library
 app.use('/js/jquery', express.static('node_modules/jquery/dist'));
 
-// Bootstrap CSS/JS framework (bundled with Popper)
+// Bootstrap CSS/JS framework with popper
+app.use('/js/popper', express.static('node_modules/popper.js/dist'));
 app.use('/js/bootstrap', express.static('node_modules/bootstrap/dist/js'));
 app.use('/css/bootstrap', express.static('node_modules/bootstrap/dist/css'));
 
