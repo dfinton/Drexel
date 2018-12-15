@@ -22,8 +22,8 @@ app.use('/css/bootstrap', express.static('node_modules/bootstrap/dist/css'));
 app.use('/js/react', express.static('node_modules/react/umd'));
 app.use('/js/react-dom', express.static('node_modules/react-dom/umd'));
 
-// Web components loader
-app.use('/js/webcomponentsjs', express.static('node_modules/@webcomponents/webcomponentsjs'));
+// Axios for AJAX calls
+app.use('/js/axios', express.static('node_modules/axios/dist'));
 
 // Asset folders
 app.use('/js', express.static('dist/js'));
