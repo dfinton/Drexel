@@ -15,12 +15,6 @@ if (!mongoUri) {
   throw new Error('MONGO_URI is not defined; please run "npm run init" before starting the server');
 }
 
-// Initialize the app
-app.use(bodyParser.json());
-
-// Authentication end-point
-app.use('/auth', require('./auth'));
-
 // JQuery JS library
 app.use('/js/jquery', express.static('node_modules/jquery/dist'));
 
@@ -45,6 +39,12 @@ app.use('/', express.static('layout'));
 
 model.init(mongoUri, () => {
   console.log('Connected to database');
+
+  // Initialize the app
+  app.use(bodyParser.json());
+
+  // Authentication end-point
+  app.use('/auth', require('./auth'));
 
   app.listen(port, () => {
     console.log(`Listening on port ${port}`);

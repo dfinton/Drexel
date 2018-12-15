@@ -5,7 +5,7 @@ const mustache = require('mustache');
 const path = require('path');
 
 require('../model/User');
-const userModel = mongoose.model('User');
+const User = mongoose.model('User');
 
 const rootDir = path.join(__dirname, '..');
 const dotenvPath = path.join(rootDir, '.env');
@@ -55,7 +55,7 @@ const validateMongoUri = function(input) {
       return done(`Could not connect to MongoDB at "${input}". Make sure that a database is installed and running on that host/port before proceeding`);
     }
 
-    userModel.countDocuments(validateEmptyUserCollection(input, done));
+    User.countDocuments(validateEmptyUserCollection(input, done));
   });
 };
 
@@ -78,7 +78,7 @@ const createAdmin = (answers) => {
       password,
     } = answers;
 
-    const admin = new userModel({
+    const admin = new User({
       login,
       password,
     });
