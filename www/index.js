@@ -14,12 +14,13 @@ app.use('/auth', require('./auth'));
 app.use('/js/jquery', express.static('node_modules/jquery/dist'));
 
 // Bootstrap CSS/JS framework with popper
-app.use('/js/popper', express.static('node_modules/popper.js/dist'));
+app.use('/js/popper', express.static('node_modules/popper.js/dist/umd'));
 app.use('/js/bootstrap', express.static('node_modules/bootstrap/dist/js'));
 app.use('/css/bootstrap', express.static('node_modules/bootstrap/dist/css'));
 
-// Redux store library
-app.use('/js/redux', express.static('node_modules/redux/dist'));
+// React Framework libraries
+app.use('/js/react', express.static('node_modules/react/umd'));
+app.use('/js/react-dom', express.static('node_modules/react-dom/umd'));
 
 // Web components loader
 app.use('/js/webcomponentsjs', express.static('node_modules/@webcomponents/webcomponentsjs'));

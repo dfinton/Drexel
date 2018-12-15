@@ -10,6 +10,10 @@
     <script src="/js/jquery/jquery.js"></script>
     <script src="/js/popper/popper.js"</script>
     <script src="/js/bootstrap/bootstrap.js"></script>
+    <script src="/js/react/react.development.js"></script>
+    <script src="/js/react-dom/react-dom.development.js"></script>
+    <script src="/js/bootstrap/bootstrap.js"></script>
+    
     <script src="/js/app.js"></script>
 
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.css">
@@ -20,17 +24,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <form id="drexel-login-form" method="POST" action="/auth">
-            <div class="form-group">
-              <label for="drexel-login">Login</label>
-              <input type="email" class="form-control" id="drexel-login" name="login" placeholder="Enter login">
-            </div>
-            <div class="form-group">
-              <label for="drexel-password">Password</label>
-              <input type="password" class="form-control" id="drexel-password" name="password" placeholder="Password">
-            </div>
-            <button id="drexel-login-submit" type="submit" class="btn btn-primary">Enter</button>
-          </form>
+          <div id="drexel-login"></div>
         </div>
       </div>
     </div>
