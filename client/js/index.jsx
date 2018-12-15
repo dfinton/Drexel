@@ -25,14 +25,21 @@ class DrexelLoginForm extends React.Component {
   submitLoginForm(event) {
     event.preventDefault();
 
-    axios
-      .post(
-        '/auth',
-        {
-          login: this.state.login,
-          password: this.state.password,
-        }
-      )
+    const {
+      login,
+      password,
+    } = this.state;
+
+    const options = {
+      method: 'post',
+      url: '/auth',
+      data: {
+        login,
+        password,
+      },
+    };
+
+    axios(options)
       .then(this.processAuthToken)
       .catch(this.processLoginError);
   }
