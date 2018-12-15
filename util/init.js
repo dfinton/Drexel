@@ -48,11 +48,7 @@ const validateEmptyUserCollection = (mongoUri, done) => {
 const validateMongoUri = function(input) {
   const done = this.async();
 
-  const options = {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  };
+  const options = require('../mongoose-connect-options');
 
   mongoose.connect(input, options, (err) => {
     if (err) {

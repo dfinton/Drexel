@@ -2,8 +2,18 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const express = require('express');
 
+const model = require('../model');
+
+dotenv.config();
+
 const app = express();
 const port = process.env.PORT || 3000;
+
+const mongoUri = process.env.MONGO_URI;
+
+if (!mongoUri) {
+  throw new Error('MONGO_URI is not defined; please run "npm run init" before starting the server');
+}
 
 // Initialize the app
 app.use(bodyParser.json());
@@ -33,6 +43,10 @@ app.use('/css', express.static('dist/css'));
 // Layout where the root HTML document is located
 app.use('/', express.static('layout'));
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
+model.init(mongoUri, () => {
+  console.log('Connected to database');
+
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
 });
