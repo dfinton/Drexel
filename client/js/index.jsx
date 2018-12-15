@@ -1,11 +1,17 @@
-class LoginForm extends React.Component {
+class DrexelLoginForm extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
   }
 
   render() {
     return (
-      <form id="drexel-login-form" method="POST" action="/auth">
+      <form id="drexel-login-form" onSubmit={this.handleSubmit}>
         <div className="form-group">
           <label htmlFor="drexel-login">Login</label>
           <input type="email" className="form-control" id="drexel-login" name="login" placeholder="Enter login" />
@@ -20,7 +26,5 @@ class LoginForm extends React.Component {
   }
 }
 
-$(() => {
-  let domContainer = document.querySelector('#drexel-login');
-  ReactDOM.render(<LoginForm />, domContainer);
-});
+let domContainer = document.querySelector('#drexel-login');
+ReactDOM.render(<DrexelLoginForm />, domContainer);
