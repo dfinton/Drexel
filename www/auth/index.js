@@ -1,5 +1,8 @@
 const express = require('express');
+const fs = require('fs');
+const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const keyRouter = require('./key');
 
@@ -57,7 +60,42 @@ router.post('/', (req, res, next) => {
       return next(new UnauthorizedError());
     }
 
-    res.locals.data = 'We are logged in';
+    return next();
+  });
+});
+
+router.post('/', (req, res, next) => {
+  const keyPath = path.join(process.cwd(), 'private-rsa.key');
+
+  fs.readFile(keyPath, 'utf8', (err, data) => {
+    if (err) {
+      return next(new InternalServerError());
+    }
+
+    res.locals.privateKey = data;
+
+    return next();
+  });
+});
+
+router.post('/', (req, res, next) => {
+  const payload = {
+    login: res.locals.user.login,
+  };
+
+  const options = {
+    algorithm: 'RS256',
+    expiresIn: '24h',
+  };
+
+  jwt.sign(payload, res.locals.privateKey, options, (err, token) => {
+    if (err) {
+      return next(new InternalServerError());
+    }
+
+    res.locals.data = {
+      jwt: token,
+    };
 
     return next();
   });
