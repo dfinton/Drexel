@@ -1,8 +1,7 @@
-const {createStore} = require('redux');
-const {sessionManager} = require('./session/store');
+// Create the session store in redux
+const {store} = require('./session/store');
 
-const sessionStore = createStore(sessionManager);
-
+// Import all the React components
 const {DrexelLoginForm} = require('./component/login/form');
 
 let drexelLoginFormContainer = document.querySelector('#drexel-login-form');

@@ -1,3 +1,5 @@
+const {createStore} = require('redux');
+
 const token = (state = '', action) => {
   switch (action.type) {
     case 'CREATE_SESSION':
@@ -28,6 +30,6 @@ const sessionManager = (state = {}, action) => {
   };
 };
 
-module.exports.createSession = createSession;
-module.exports.destroySession = destroySession;
-module.exports.sessionManager = sessionManager;
+const store = createStore(sessionManager);
+
+module.exports = store
