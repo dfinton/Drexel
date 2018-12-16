@@ -65,3 +65,6 @@ typings/
 
 # Drexel build folders
 dist/*
+
+# RSA keys
+*.key

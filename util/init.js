@@ -1,16 +1,21 @@
+const async = require('async');
 const fs = require('fs');
 const inquirer = require('inquirer');
 const mongoose = require('mongoose');
 const mustache = require('mustache');
+const nodeRsa = require('node-rsa');
 const path = require('path');
 
+// Creating the initial admin user
 require('../model/User');
 const User = mongoose.model('User');
 
+// Generating the environment varibles
 const rootDir = path.join(__dirname, '..');
 const dotenvPath = path.join(rootDir, '.env');
 const dotenvTemplatePath = path.join(rootDir, '.env-template');
 
+// Validation functions for the inquirer
 const validatePassword = function(input) {
   const done = this.async();
 
@@ -59,12 +64,52 @@ const validateMongoUri = function(input) {
   });
 };
 
-const disconnectDatabase = (err) => {
-  if (err) {
-    throw err;
-  }
+// Callbacks for initializing the server
+const disconnectDatabase = (answers) => {
+  return (err, results) => {
+    if (err) {
+      throw err;
+    }
 
-  mongoose.connection.close();
+    mongoose.connection.close();
+  };
+};
+
+const handleWriteKeys = (callback) => {
+  return (err) => {
+    if (err) {
+      return callback(err);
+    }
+
+    return callback(null, true);
+  };
+};
+
+const createRsaKeys = (answers) => {
+  return (err) => {
+    if (err) {
+      throw err;
+    }
+
+    const rsaKey = new nodeRsa({
+      b: 512
+    });
+
+    async.parallel([
+      (callback) => {
+        const publicKeyPath = path.join(rootDir, 'public-rsa.key');
+        const publicKey = rsaKey.exportKey('pkcs8-public');
+
+        fs.writeFile(publicKeyPath, publicKey, 'utf8', handleWriteKeys(callback));
+      },
+      (callback) => {
+        const privateKeyPath = path.join(rootDir, 'private-rsa.key');
+        const privateKey = rsaKey.exportKey('pkcs8-private');
+
+        fs.writeFile(privateKeyPath, privateKey, 'utf8', handleWriteKeys(callback));
+      },
+    ], disconnectDatabase(answers));
+  };
 };
 
 const createAdmin = (answers) => {
@@ -83,7 +128,7 @@ const createAdmin = (answers) => {
       password,
     });
 
-    admin.save(disconnectDatabase);
+    admin.save(createRsaKeys(answers));
   };
 };
 
