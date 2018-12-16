@@ -4,18 +4,11 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const router = express.Router();
 
-class NotAuthorizedError extends Error {
-  constructor(filename, lineNumber) {
-    const message = "Not Authorized";
+const {UnauthorizedError} = require('../../error');
 
-    super(message, filename, lineNumber);
-
-    // Maintains proper stack trace for where our error was thrown (only available on V8)
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, NotAuthorizedError);
-    }
-  }
-}
+const dataMiddleware = require('../middleware/data');
+const errorMiddleware = require('../middleware/error');
+const notFoundMiddleware = require('../middleware/not-found');
 
 router.post('/', (req, res, next) => {
   const {
@@ -33,7 +26,7 @@ router.post('/', (req, res, next) => {
     }
 
     if (!user) {
-      return next(new NotAuthorizedError());
+      return next(new UnauthorizedError());
     }
 
     res.locals.user = user;
@@ -55,25 +48,17 @@ router.post('/', (req, res, next) => {
     }
 
     if (!isMatch) {
-      return next(new NotAuthorizedError());
+      return next(new UnauthorizedError());
     }
 
-    return res.status(200).json({
-      status: 'OK',
-    });
+    res.locals.data = 'We are logged in';
+
+    return next();
   });
 });
 
-router.use((err, req, res, next) => {
-  let status = 500;
-
-  if (err instanceof NotAuthorizedError) {
-    status = 401;
-  }
-
-  return res.status(status).json({
-    status: err.message,
-  });
-});
+router.use(dataMiddleware);
+router.use(notFoundMiddleware);
+router.use(errorMiddleware);
 
 module.exports = router;

@@ -46,6 +46,7 @@ model.init(mongoUri, () => {
   // Authentication end-point
   app.use('/auth', require('./auth'));
 
+  // Start up the server and listen for inbound requests
   app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
