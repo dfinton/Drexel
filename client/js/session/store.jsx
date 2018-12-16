@@ -17,6 +17,12 @@ const sessionManager = (state = {}, action) => {
   };
 };
 
-const store = createStore(sessionManager);
+const storedSession = localStorage.getItem('session') ? JSON.parse(localStorage.getItem('session')) : {};
+
+const store = createStore(sessionManager, storedSession);
+
+store.subscribe(() => {
+  localStorage.setItem('session', JSON.stringify(store.getState()))
+});
 
 module.exports = store
