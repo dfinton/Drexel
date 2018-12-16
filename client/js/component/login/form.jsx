@@ -15,6 +15,7 @@ class DrexelLoginForm extends React.Component {
     this.submitLoginForm = this.submitLoginForm.bind(this);
     this.updateLogin = this.updateLogin.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
+    this.visibleClass = this.visibleClass.bind(this);
   }
 
   processAuthToken(response) {
@@ -22,7 +23,9 @@ class DrexelLoginForm extends React.Component {
       return this.processLoginError(new Error(response.data.message));
     }
 
-    const token = response.data.data.jwt;
+    const {
+      token,
+    } = response.data.data;
 
     this.props.createSession(token);
   }
@@ -65,9 +68,17 @@ class DrexelLoginForm extends React.Component {
     });
   }
 
+  visibleClass() {
+    if (this.props.token === '') {
+      return 'd-block';
+    }
+
+    return 'd-none';
+  }
+
   render() {
     return (
-      <form onSubmit={this.submitLoginForm}>
+      <form className={this.visibleClass()} onSubmit={this.submitLoginForm}>
         <div className="form-group">
           <label htmlFor="drexel-login">Login</label>
           <input
@@ -91,14 +102,22 @@ class DrexelLoginForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  const {
+    token,
+  } = state;
+
   return {
-    token: state.token,
+    token,
   };
 };
 
-const mapDispatchToProps = {createSession};
+const mapDispatchToProps = {
+  createSession,
+};
 
-module.exports.DrexelLoginForm = connect(
+const connectMappings = connect(
   mapStateToProps,
-  mapDispatchToProps
-)(DrexelLoginForm);
+  mapDispatchToProps,
+);
+
+module.exports.DrexelLoginForm = connectMappings(DrexelLoginForm);

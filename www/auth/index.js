@@ -94,7 +94,7 @@ router.post('/', (req, res, next) => {
     }
 
     res.locals.data = {
-      jwt: token,
+      token,
     };
 
     return next();
