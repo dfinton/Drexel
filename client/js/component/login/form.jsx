@@ -1,3 +1,6 @@
+const {connect} = require('react-redux');
+const {createSession} = require('../../session/action');
+
 class DrexelLoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +18,13 @@ class DrexelLoginForm extends React.Component {
   }
 
   processAuthToken(response) {
-    console.log(response);
+    if (response.data.status !== 'OK') {
+      return this.processLoginError(new Error(response.data.message));
+    }
+
+    const token = response.data.data.jwt;
+
+    this.props.createSession(token);
   }
 
   processLoginError(error) {
@@ -81,4 +90,15 @@ class DrexelLoginForm extends React.Component {
   }
 }
 
-module.exports.DrexelLoginForm = DrexelLoginForm;
+const mapStateToProps = (state) => {
+  return {
+    token: state.token,
+  };
+};
+
+const mapDispatchToProps = {createSession};
+
+module.exports.DrexelLoginForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DrexelLoginForm);
