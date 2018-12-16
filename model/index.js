@@ -8,6 +8,7 @@ const init = (mongoUri, callback) => {
       throw err;
     }
 
+    require('./Session');
     require('./User');
 
     callback();

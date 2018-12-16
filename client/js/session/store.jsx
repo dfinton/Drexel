@@ -18,7 +18,6 @@ const sessionManager = (state = {}, action) => {
 };
 
 const storedSession = localStorage.getItem('session') ? JSON.parse(localStorage.getItem('session')) : {};
-
 const store = createStore(sessionManager, storedSession);
 
 store.subscribe(() => {
