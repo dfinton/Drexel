@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const keyRouter = require('./key');
+
 const User = mongoose.model('User');
 const router = express.Router();
 
@@ -10,6 +12,10 @@ const dataMiddleware = require('../middleware/data');
 const errorMiddleware = require('../middleware/error');
 const notFoundMiddleware = require('../middleware/not-found');
 
+// Handle sub-routes
+router.use('/key', keyRouter);
+
+// Handle our endpoint
 router.post('/', (req, res, next) => {
   const {
     login,
