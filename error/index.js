@@ -11,17 +11,27 @@ class HttpError extends Error {
   }
 }
 
+// Status 401
 class UnauthorizedError extends HttpError {
   constructor() {
     super('UNAUTHORIZED');
   }
 }
 
+// Status 404
 class NotFoundError extends HttpError {
   constructor() {
     super('NOT_FOUND');
   }
 }
 
+// Status 500
+class InternalServerError extends HttpError {
+  constructor() {
+    super('INTERNAL_SERVER_ERROR');
+  }
+}
+
 module.exports.UnauthorizedError = UnauthorizedError;
 module.exports.NotFoundError = NotFoundError;
+module.exports.InternalServerError = InternalServerError;

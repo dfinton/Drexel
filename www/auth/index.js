@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const router = express.Router();
 
-const {UnauthorizedError} = require('../../error');
+const {UnauthorizedError, InternalServerError} = require('../../error');
 
 const dataMiddleware = require('../middleware/data');
 const errorMiddleware = require('../middleware/error');
@@ -22,7 +22,7 @@ router.post('/', (req, res, next) => {
 
   User.findOne(criteria, (err, user) => {
     if (err) {
-      return next(err);
+      return next(new InternalServerError());
     }
 
     if (!user) {
@@ -44,7 +44,7 @@ router.post('/', (req, res, next) => {
 
   user.comparePassword(candidatePassword, (err, isMatch) => {
     if (err) {
-      return next(err);
+      return next(new InternalServerError());
     }
 
     if (!isMatch) {
