@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const keyRouter = require('./key');
+const validateRouter = require('./validate');
 const router = express.Router();
 
 const User = mongoose.model('User');
@@ -18,6 +19,7 @@ const notFoundMiddleware = require('../middleware/not-found');
 
 // Handle sub-routes
 router.use('/key', keyRouter);
+router.use('/validate', validateRouter);
 
 // Validate the login name exists in the database
 router.post('/', (req, res, next) => {
