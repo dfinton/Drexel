@@ -23,13 +23,6 @@ app.use('/js/popper', express.static('node_modules/popper.js/dist/umd'));
 app.use('/js/bootstrap', express.static('node_modules/bootstrap/dist/js'));
 app.use('/css/bootstrap', express.static('node_modules/bootstrap/dist/css'));
 
-// React Framework libraries
-app.use('/js/react', express.static('node_modules/react/umd'));
-app.use('/js/react-dom', express.static('node_modules/react-dom/umd'));
-
-// Axios for AJAX calls
-app.use('/js/axios', express.static('node_modules/axios/dist'));
-
 // Asset folders
 app.use('/js', express.static('dist/js'));
 app.use('/css', express.static('dist/css'));

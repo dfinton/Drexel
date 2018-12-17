@@ -1,4 +1,5 @@
 const axios = require('axios');
+const React = require('react');
 const {connect} = require('react-redux');
 const {createSession} = require('../../session/action');
 

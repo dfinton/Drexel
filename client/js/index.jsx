@@ -1,4 +1,6 @@
 const axios = require('axios');
+const React = require('react');
+const ReactDOM = require('react-dom');
 
 // Create the session store in redux
 const {Provider} = require('react-redux');
