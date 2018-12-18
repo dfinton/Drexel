@@ -17,7 +17,6 @@ class DrexelLoginForm extends React.Component {
     this.submitLoginForm = this.submitLoginForm.bind(this);
     this.updateLogin = this.updateLogin.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
-    this.visibleClass = this.visibleClass.bind(this);
   }
 
   processAuthToken(response) {
@@ -70,17 +69,9 @@ class DrexelLoginForm extends React.Component {
     });
   }
 
-  visibleClass() {
-    if (this.props.token === '') {
-      return 'd-block';
-    }
-
-    return 'd-none';
-  }
-
   render() {
     return (
-      <form className={this.visibleClass()} onSubmit={this.submitLoginForm}>
+      <form onSubmit={this.submitLoginForm}>
         <div className="form-group">
           <label htmlFor="drexel-login">Login</label>
           <input
@@ -103,22 +94,12 @@ class DrexelLoginForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const {
-    token,
-  } = state;
-
-  return {
-    token,
-  };
-};
-
 const mapDispatchToProps = {
   createSession,
 };
 
 const connectMappings = connect(
-  mapStateToProps,
+  state => {return {}},
   mapDispatchToProps,
 );
 

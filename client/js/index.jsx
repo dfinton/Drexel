@@ -20,13 +20,13 @@ validate(token, (result) => {
   }
 
   // Import all the React components
-  const {DrexelLoginForm} = require('./component/login/form');
+  const {Drexel} = require('./component/drexel');
 
   // Render the page in full
   ReactDOM.render(
     <Provider store={store}>
-      <DrexelLoginForm />
+      <Drexel />
     </Provider>,
-    document.querySelector('#drexel-login-form')
+    document.querySelector('#drexel')
   );
 });
