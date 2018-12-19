@@ -1,7 +1,7 @@
 const axios = require('axios');
 const React = require('react');
 const {connect} = require('react-redux');
-const {createSession} = require('../../session/action');
+const {createSession, setScreen} = require('../../session/action');
 
 class DrexelLoginForm extends React.Component {
   constructor(props) {
@@ -29,6 +29,7 @@ class DrexelLoginForm extends React.Component {
     } = response.data.data;
 
     this.props.createSession(token);
+    this.props.setScreen('main-menu');
   }
 
   processLoginError(error) {
@@ -96,6 +97,7 @@ class DrexelLoginForm extends React.Component {
 
 const mapDispatchToProps = {
   createSession,
+  setScreen,
 };
 
 const connectMappings = connect(

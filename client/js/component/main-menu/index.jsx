@@ -1,9 +1,7 @@
 const React = require('react');
 const {connect} = require('react-redux');
 
-const {DrexelLoginForm} = require('./form');
-
-class DrexelLogin extends React.Component {
+class DrexelMainMenu extends React.Component {
   constructor(props) {
     super(props);
 
@@ -11,7 +9,7 @@ class DrexelLogin extends React.Component {
   }
 
   visibleClass() {
-    if (this.props.token === '') {
+    if (this.props.token !== '' && this.props.screen === 'main-menu') {
       return 'd-block';
     }
 
@@ -24,7 +22,7 @@ class DrexelLogin extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <DrexelLoginForm />
+              This is the Main Menu
             </div>
           </div>
         </div>
@@ -36,10 +34,12 @@ class DrexelLogin extends React.Component {
 const mapStateToProps = (state) => {
   const {
     token,
+    screen,
   } = state;
 
   return {
     token,
+    screen,
   };
 };
 
@@ -47,4 +47,4 @@ const connectMappings = connect(
   mapStateToProps,
 );
 
-module.exports.DrexelLogin = connectMappings(DrexelLogin);
+module.exports.DrexelMainMenu = connectMappings(DrexelMainMenu);

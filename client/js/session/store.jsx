@@ -11,9 +11,19 @@ const token = (state = '', action) => {
   }
 };
 
+const screen = (state = '', action) => {
+  switch (action.type) {
+    case 'SET_SCREEN':
+      return action.screen;
+    default:
+      return state;
+  }
+};
+
 const sessionManager = (state = {}, action) => {
   return {
     token: token(state.token, action),
+    screen: screen(state.screen, action),
   };
 };
 
