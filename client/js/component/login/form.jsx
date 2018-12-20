@@ -89,7 +89,7 @@ class DrexelLoginForm extends React.Component {
             type="password" className="form-control" id="drexel-password" name="password" placeholder="Password"
           />
         </div>
-        <button id="drexel-login-submit" type="submit" className="btn btn-primary">Enter</button>
+        <button type="submit" className="btn btn-primary">Enter</button>
       </form>
     );
   }

@@ -1,11 +1,17 @@
 const React = require('react');
 const {connect} = require('react-redux');
+const {destroySession} = require('../../session/action');
 
 class DrexelMainMenu extends React.Component {
   constructor(props) {
     super(props);
 
+    this.logOff = this.logOff.bind(this);
     this.visibleClass = this.visibleClass.bind(this);
+  }
+
+  logOff(event) {
+    this.props.destroySession();
   }
 
   visibleClass() {
@@ -22,7 +28,9 @@ class DrexelMainMenu extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              This is the Main Menu
+              <button type="button" class="btn btn-primary btn-lg btn-block mt-2">Game Administration</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block mt-2">Play Game</button>
+              <button onClick={this.logOff} type="button" class="btn btn-secondary btn-lg btn-block mt-4">Log Off</button>
             </div>
           </div>
         </div>
@@ -43,8 +51,13 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = {
+  destroySession,
+};
+
 const connectMappings = connect(
   mapStateToProps,
+  mapDispatchToProps,
 );
 
 module.exports.DrexelMainMenu = connectMappings(DrexelMainMenu);
