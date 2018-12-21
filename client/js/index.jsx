@@ -7,8 +7,6 @@ const store = require('./session/store');
 const validateSession = require('./session/validate');
 
 // Validate the stored token and load the site
-// const token = store.getState().token;
-
 validateSession(store, () => {
   // Import all the React components
   const {Drexel} = require('./component/drexel');

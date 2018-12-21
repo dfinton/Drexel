@@ -1,6 +1,10 @@
 const React = require('react');
 const {connect} = require('react-redux');
-const {destroySession} = require('../../session/action');
+
+const {
+  destroySession,
+  clearPublicKey,
+} = require('../../session/action');
 
 class DrexelMainMenu extends React.Component {
   constructor(props) {
@@ -12,6 +16,7 @@ class DrexelMainMenu extends React.Component {
 
   logOff(event) {
     this.props.destroySession();
+    this.props.clearPublicKey();
   }
 
   visibleClass() {
@@ -28,9 +33,9 @@ class DrexelMainMenu extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <button type="button" class="btn btn-primary btn-lg btn-block mt-2">Game Administration</button>
-              <button type="button" class="btn btn-primary btn-lg btn-block mt-2">Play Game</button>
-              <button onClick={this.logOff} type="button" class="btn btn-secondary btn-lg btn-block mt-4">Log Off</button>
+              <button type="button" className="btn btn-primary btn-lg btn-block mt-2">Game Administration</button>
+              <button type="button" className="btn btn-primary btn-lg btn-block mt-2">Play Game</button>
+              <button onClick={this.logOff} type="button" className="btn btn-secondary btn-lg btn-block mt-4">Log Off</button>
             </div>
           </div>
         </div>
@@ -53,6 +58,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   destroySession,
+  clearPublicKey,
 };
 
 const connectMappings = connect(

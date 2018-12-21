@@ -1,7 +1,11 @@
 const axios = require('axios');
 const React = require('react');
 const {connect} = require('react-redux');
-const {createSession, setScreen} = require('../../session/action');
+
+const {
+  createSession,
+  setScreen,
+} = require('../../session/action');
 
 class DrexelLoginForm extends React.Component {
   constructor(props) {
