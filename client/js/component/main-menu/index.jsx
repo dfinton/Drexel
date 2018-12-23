@@ -4,14 +4,20 @@ const {connect} = require('react-redux');
 const {
   destroySession,
   clearPublicKey,
+  setScreen,
 } = require('../../session/action');
 
 class DrexelMainMenu extends React.Component {
   constructor(props) {
     super(props);
 
+    this.adminMenu = this.adminMenu.bind(this);
     this.logOff = this.logOff.bind(this);
     this.visibleClass = this.visibleClass.bind(this);
+  }
+
+  adminMenu(event) {
+    this.props.setScreen('admin-menu');
   }
 
   logOff(event) {
@@ -33,7 +39,7 @@ class DrexelMainMenu extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <button type="button" className="btn btn-primary btn-lg btn-block mt-2">Game Administration</button>
+              <button onClick={this.adminMenu} type="button" className="btn btn-primary btn-lg btn-block mt-2">Game Administration</button>
               <button type="button" className="btn btn-primary btn-lg btn-block mt-2">Play Game</button>
               <button onClick={this.logOff} type="button" className="btn btn-secondary btn-lg btn-block mt-4">Log Off</button>
             </div>
@@ -59,6 +65,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   destroySession,
   clearPublicKey,
+  setScreen,
 };
 
 const connectMappings = connect(

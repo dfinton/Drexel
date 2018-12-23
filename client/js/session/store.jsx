@@ -24,8 +24,6 @@ const publicKey = (state = '', action) => {
   switch (action.type) {
     case 'SET_PUBLIC_KEY':
       return action.publicKey;
-    case 'CLEAR_PUBLIC_KEY':
-      return '';
     default:
       return state;
   }
