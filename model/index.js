@@ -9,6 +9,7 @@ const init = (mongoUri, callback) => {
     }
 
     require('./Session');
+    require('./Universe');
     require('./User');
 
     callback();

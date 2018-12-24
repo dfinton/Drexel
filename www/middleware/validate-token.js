@@ -31,13 +31,18 @@ router.use((req, res, next) => {
 
 // Verify the token itself is valid
 router.use((req, res, next) => {
+  const {
+    token,
+    publicKey,
+  } = res.locals;
+
   const options = {
     algorithms: [
       'RS256',
     ],
   };
 
-  jwt.verify(res.locals.token, res.locals.publicKey, options, (err, decoded) => {
+  jwt.verify(token, publicKey, options, (err, decoded) => {
     if (err) {
       return next(new UnauthorizedError());
     }
