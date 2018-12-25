@@ -2,7 +2,7 @@ const React = require('react');
 
 const {DrexelLogin} = require('./login');
 const {DrexelMainMenu} = require('./main-menu');
-const {DrexelAdminMenu} = require('./admin-menu');
+const {DrexelAdminScreen} = require('./admin');
 
 class Drexel extends React.Component {
   render() {
@@ -10,7 +10,7 @@ class Drexel extends React.Component {
       <div>
         <DrexelLogin />
         <DrexelMainMenu />
-        <DrexelAdminMenu />
+        <DrexelAdminScreen />
       </div>
     );
   }
