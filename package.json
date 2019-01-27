@@ -4,11 +4,13 @@
   "description": "Drexel",
   "main": "index.js",
   "scripts": {
-    "client": "browserify src/client/js/index.jsx --extension=.jsx -o dist/js/app.js -t babelify --presets @babel/react",
-    "client-dev": "watchify --verbose --poll=100 src/client/js/index.jsx --extension=.jsx -o dist/js/app.js -t babelify --presets @babel/react",
     "init": "node src/util/init.js",
-    "www": "node src/www/index.js",
-    "www-dev": "nodemon src/www/index.js"
+    "start:client": "browserify src/client/js/index.jsx --extension=.jsx -o dist/js/app.js -t babelify --presets @babel/react",
+    "start:sass": "node-sass-chokidar --include-path ./node_modules ./src/scss -o ./dist/css",
+    "start:www": "node src/www/index.js",
+    "watch:client": "watchify --verbose --poll=100 src/client/js/index.jsx --extension=.jsx -o dist/js/app.js -t babelify --presets @babel/react",
+    "watch:sass": "node-sass-chokidar --include-path ./node_modules ./src/scss -o ./dist/css --watch",
+    "watch:www": "nodemon src/www/index.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +49,7 @@
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
     "eslint": "^5.12.1",
+    "node-sass-chokidar": "^1.3.4",
     "nodemon": "^1.18.6",
     "watchify": "^3.11.0"
   },

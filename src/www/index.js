@@ -18,10 +18,9 @@ if (!mongoUri) {
 // JQuery JS library
 app.use('/js/jquery', express.static('node_modules/jquery/dist'));
 
-// Bootstrap CSS/JS framework with popper
+// Bootstrap framework with popper
 app.use('/js/popper', express.static('node_modules/popper.js/dist/umd'));
 app.use('/js/bootstrap', express.static('node_modules/bootstrap/dist/js'));
-app.use('/css/bootstrap', express.static('node_modules/bootstrap/dist/css'));
 
 // Asset folders
 app.use('/js', express.static('dist/js'));
