@@ -28,7 +28,7 @@ app.use('/js', express.static('dist/js'));
 app.use('/css', express.static('dist/css'));
 
 // Layout where the root HTML document is located
-app.use('/', express.static('layout'));
+app.use('/', express.static('src/layout'));
 
 model.init(mongoUri, () => {
   console.log('Connected to database');
