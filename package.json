@@ -4,11 +4,11 @@
   "description": "Drexel",
   "main": "index.js",
   "scripts": {
-    "build": "browserify client/js/index.jsx --extension=.jsx -o dist/js/app.js -t babelify --presets @babel/react",
-    "build-dev": "watchify --verbose --poll=100 client/js/index.jsx --extension=.jsx -o dist/js/app.js -t babelify --presets @babel/react",
-    "init": "node util/init.js",
-    "www": "node www/index.js",
-    "www-dev": "nodemon www/index.js"
+    "client": "browserify src/client/js/index.jsx --extension=.jsx -o dist/js/app.js -t babelify --presets @babel/react",
+    "client-dev": "watchify --verbose --poll=100 src/client/js/index.jsx --extension=.jsx -o dist/js/app.js -t babelify --presets @babel/react",
+    "init": "node src/util/init.js",
+    "www": "node src/www/index.js",
+    "www-dev": "nodemon src/www/index.js"
   },
   "repository": {
     "type": "git",

@@ -11,7 +11,7 @@ require('../model/User');
 const User = mongoose.model('User');
 
 // Generating the environment varibles
-const rootDir = path.join(__dirname, '..');
+const rootDir = path.join(__dirname, '..', '..');
 const dotenvPath = path.join(rootDir, '.env');
 const dotenvTemplatePath = path.join(rootDir, '.env-template');
 
